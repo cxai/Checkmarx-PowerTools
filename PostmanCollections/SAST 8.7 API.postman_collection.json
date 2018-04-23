@@ -1,0 +1,835 @@
+{
+	"info": {
+		"_postman_id": "842ea208-73f7-47c5-9d47-9c6733585b69",
+		"name": "SAST 8.7 API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "LoginAndGetToken",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d003a60d-f48c-4e31-b5af-2e00093e273a",
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"oauthtoken\", jsonData.access_token);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "sast_rest_api",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "resource_owner_client",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "014DF517-39D1-4453-B7B3-9930C563627C",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{server}}/cxrestapi/auth/identity/connect/token",
+					"protocol": "http",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"cxrestapi",
+						"auth",
+						"identity",
+						"connect",
+						"token"
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "f2ed6a5e-d3be-4fb4-acda-18cef36e9e64",
+					"name": "GetToken",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "admin@cx",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "sast_rest_api",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "resource_owner_client",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "014DF517-39D1-4453-B7B3-9930C563627C",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://192.168.50.5/cxrestapi/auth/identity/connect/token",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"50",
+								"5"
+							],
+							"path": [
+								"cxrestapi",
+								"auth",
+								"identity",
+								"connect",
+								"token"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Cache-Control",
+							"value": "no-store, no-cache, max-age=0, private",
+							"name": "Cache-Control",
+							"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2075",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 06 Apr 2018 05:20:19 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache",
+							"name": "Pragma",
+							"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+						},
+						{
+							"key": "Server",
+							"value": "Microsoft-IIS/10.0",
+							"name": "Server",
+							"description": "A name for the server"
+						},
+						{
+							"key": "X-AspNet-Version",
+							"value": "4.0.30319",
+							"name": "X-AspNet-Version",
+							"description": "Custom header"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "ASP.NET",
+							"name": "X-Powered-By",
+							"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+						}
+					],
+					"cookie": [],
+					"body": "{\"access_token\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImlOdGFMaUtxSVJHWFJJZ3c0Rjh4YlhOR1ZlZyIsImtpZCI6ImlOdGFMaUtxSVJHWFJJZ3c0Rjh4YlhOR1ZlZyJ9.eyJpc3MiOiJodHRwczovL1ZBR1JBTlQvY3hyZXN0YXBpL2F1dGgvaWRlbnRpdHkiLCJhdWQiOiJodHRwczovL1ZBR1JBTlQvY3hyZXN0YXBpL2F1dGgvaWRlbnRpdHkvcmVzb3VyY2VzIiwiZXhwIjoxNTIzMDc4NDE5LCJuYmYiOjE1MjI5OTIwMTksImNsaWVudF9pZCI6InJlc291cmNlX293bmVyX2NsaWVudCIsInNjb3BlIjoic2FzdF9yZXN0X2FwaSIsInN1YiI6IjIiLCJhdXRoX3RpbWUiOjE1MjI5OTIwMTksImlkcCI6Imlkc3J2IiwiaWQiOiIyIiwicHJlZmVycmVkX3VzZXJuYW1lIjoiYWRtaW5AY3giLCJnaXZlbl9uYW1lIjoiYWRtaW4iLCJmYW1pbHlfbmFtZSI6ImFkbWluIiwibmFtZSI6ImFkbWluIGFkbWluIiwiTENJRCI6IjEwMzMiLCJlbWFpbCI6ImFkbWluQGN4LmNvbSIsIlRlYW0iOiJcXDAwMDAwMDAwLTExMTEtMTExMS1iMTExLTk4OWM5MDcwZWIxMSIsInNhc3Rfcm9sZSI6WyJzYXZlLXNhc3Qtc2NhbiIsImRlbGV0ZS1zYXN0LXNjYW4iLCJzYXZlLW9zYS1zY2FuIiwibWFuYWdlLXJlc3VsdHMiLCJtYW5hZ2UtcmVzdWx0LWNvbW1lbnQiLCJtYW5hZ2UtcmVzdWx0LWV4cGxvaXRhYmlsaXR5IiwibWFuYWdlLXJlc3VsdC1zZXZlcml0eSIsIm1hbmFnZS1kYXRhLWFuYWx5c2lzLXRlbXBsYXRlcyIsInZpZXctZGFzaGJvYXJkIiwiZ2VuZXJhdGUtc2Nhbi1yZXBvcnQiLCJtYW5hZ2UtcXVlcmllcyIsIm9wZW4taXNzdWUtdHJhY2tpbmctdGlja2V0cyIsIm1hbmFnZS1hdXRoZW50aWNhdGlvbi1wcm90b2NvbHMiLCJtYW5hZ2UtZGF0YS1yZXRlbnRpb24iLCJtYW5hZ2UtZW5naW5lLXNlcnZlcnMiLCJtYW5hZ2Utc3lzdGVtLXNldHRpbmdzIiwidXNlLW9kYXRhIiwibWFuYWdlLWV4dGVybmFsLXNlcnZpY2VzLXNldHRpbmdzIiwibWFuYWdlLWN1c3RvbS1kZXNjcmlwdGlvbiIsInZpZXctYXBwc2VjLWNvYWNoLXN0YXRpc3RpY3MiLCJtYW5hZ2UtY3VzdG9tLWZpZWxkcyIsInNhdmUtcHJvamVjdCIsIm1hbmFnZS11c2VycyIsIm1hbmFnZS1pc3N1ZS10cmFja2luZy1zeXN0ZW1zIiwiZGVsZXRlLXByb2plY3QiLCJtYW5hZ2UtcHJlLXBvc3Qtc2Nhbi1hY3Rpb25zIiwidmlldy1mYWlsZWQtc2FzdC1zY2FuIiwiY3JlYXRlLXByZXNldCIsInVwZGF0ZS1hbmQtZGVsZXRlLXByZXNldCJdLCJhbXIiOlsicGFzc3dvcmQiXX0.HYe1sM1EL85_sG2TfCJb6mcxbfphibCOEWUDGm2vOiMZFbAJVXTfHaycGNJdLVtdqz68QUutlkJPPYNUWK5pazNxJvzjcCsvbSDSEXnVYdkYJ0oST50GfBTAuY7T9bxulOvdEZv7UUkdIL78zRxYQHcsJnRIvnC0I-ElbFExGp7Qk7GhN8qjCMADNX62wUrFcPsRrClnvbOnSeC2c7g1QI8x3gBbAnGoRZOWfr2FIBDARN_MQl8rBfZK2UBaGFi_u6OJRjFwxGBuRtNm_YbXrLoW0cUrrFzS03eP5y78VTWiUDxd0kD2Har1WptiVWBmEDM9eRbps28FcTb1v9SxSg\",\"expires_in\":86400,\"token_type\":\"Bearer\"}"
+				}
+			]
+		},
+		{
+			"name": "GetTeam",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "45ea81fa-fec6-4339-9c5b-9d42ea41611d",
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"// shot in the dark - shoud actually match fullName on  \\\\cxserver",
+							"postman.setEnvironmentVariable(\"teamId\",jsonData[0].id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{oauthtoken}}"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json;v=1.0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json;v=1.0"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{server}}/cxrestapi/auth/teams",
+					"protocol": "http",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"cxrestapi",
+						"auth",
+						"teams"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateProject",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "aa8c5d40-ee6c-4ec5-b4ee-b74f26137a16",
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"// shot in the dark - prolly \\\\cxserver",
+							"postman.setEnvironmentVariable(\"projectId\",jsonData.id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{oauthtoken}}"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json;v=1.0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json;v=1.0"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"RestProject\",\n\t\"owningTeam\":\"{{teamId}}\",\n\t\"isPublic\":true\n}"
+				},
+				"url": {
+					"raw": "http://{{server}}/cxrestapi/projects",
+					"protocol": "http",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"cxrestapi",
+						"projects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "setSourceToGit",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "93210bfc-1716-48d6-b385-546b93d90217",
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{oauthtoken}}"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json;v=1.0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json;v=1.0"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"url\" : \"{{gitURL}}\",\n\t\"branch\":\"refs/heads/master\",\n}"
+				},
+				"url": {
+					"raw": "http://{{server}}/cxrestapi/projects/{{projectId}}/sourceCode/remoteSettings/git",
+					"protocol": "http",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"cxrestapi",
+						"projects",
+						"{{projectId}}",
+						"sourceCode",
+						"remoteSettings",
+						"git"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPresets",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5f3fb063-f205-46bb-b59b-c829c32bdcd6",
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"presetId\",jsonData[0].id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{oauthtoken}}"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json;v=1.0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json;v=1.0"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"RestProject\",\n\t\"owningTeam\":\"{{tream}}\",\n\t\"isPublic\":true\n}"
+				},
+				"url": {
+					"raw": "http://{{server}}/cxrestapi/sast/presets",
+					"protocol": "http",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"cxrestapi",
+						"sast",
+						"presets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetEngineConfig",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "df0bbd20-2f03-4e3c-bc04-015eda7ba6f4",
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"engineConfig\",jsonData[0].id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{oauthtoken}}"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json;v=1.0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json;v=1.0"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"RestProject\",\n\t\"owningTeam\":\"{{tream}}\",\n\t\"isPublic\":true\n}"
+				},
+				"url": {
+					"raw": "http://{{server}}/cxrestapi/sast/engineConfigurations",
+					"protocol": "http",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"cxrestapi",
+						"sast",
+						"engineConfigurations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DefineScan",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7cda7666-908f-48ae-93a7-b80c13cd7872",
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"scanId\",jsonData.id);"
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "54d84457-bf83-412c-b0e8-aa296624fcbd",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{oauthtoken}}"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json;v=1.0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json;v=1.0"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"projectId\" : {{projectId}},\n\t\"presetId\":{{presetId}},\n\t\"engineConfigurationId\":{{engineConfig}}\n}"
+				},
+				"url": {
+					"raw": "http://{{server}}/cxrestapi/sast/scanSettings",
+					"protocol": "http",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"cxrestapi",
+						"sast",
+						"scanSettings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "StartScan",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "07ec7f01-4de7-4bd2-bfca-eba32fbe6ab8",
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"scanId\",jsonData.id);",
+							""
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "54d84457-bf83-412c-b0e8-aa296624fcbd",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{oauthtoken}}"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json;v=1.0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json;v=1.0"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"projectId\" : {{projectId}},\n\t\"isIncremental\":false,\n\t\"isPublic\":true,\n\t\"forceScan\":false\n}"
+				},
+				"url": {
+					"raw": "http://{{server}}/cxrestapi/sast/scans",
+					"protocol": "http",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"cxrestapi",
+						"sast",
+						"scans"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GenerateReport",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f16390b3-902e-4409-a951-b5e3e1ac06e6",
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"reportId\",jsonData.reportId);"
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "54d84457-bf83-412c-b0e8-aa296624fcbd",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{oauthtoken}}"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json;v=1.0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json;v=1.0"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"scanId\" : {{scanId}},\n\t\"reportType\": \"XML\"\n}"
+				},
+				"url": {
+					"raw": "http://{{server}}/cxrestapi/reports/sastScan",
+					"protocol": "http",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"cxrestapi",
+						"reports",
+						"sastScan"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetReport",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d67747b6-5c97-4da7-a84f-1985b6854681",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "54d84457-bf83-412c-b0e8-aa296624fcbd",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{oauthtoken}}"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json;v=1.0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json;v=1.0"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"scanId\" : {{scanId}},\n\t\"reportType\": \"XML\"\n}"
+				},
+				"url": {
+					"raw": "http://{{server}}/cxrestapi/reports/sastScan/{{reportId}}",
+					"protocol": "http",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"cxrestapi",
+						"reports",
+						"sastScan",
+						"{{reportId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetProjects",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d67747b6-5c97-4da7-a84f-1985b6854681",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "54d84457-bf83-412c-b0e8-aa296624fcbd",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{oauthtoken}}"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json;v=1.0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json;v=1.0"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"scanId\" : {{scanId}},\n\t\"reportType\": \"XML\"\n}"
+				},
+				"url": {
+					"raw": "http://{{server}}/cxrestapi//projects/",
+					"protocol": "http",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"cxrestapi",
+						"",
+						"projects",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "StartOSAScan",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d67747b6-5c97-4da7-a84f-1985b6854681",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "54d84457-bf83-412c-b0e8-aa296624fcbd",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{oauthtoken}}"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json;v=1.0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json;v=1.0"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "zippedSource",
+							"value": "",
+							"type": "file"
+						},
+						{
+							"key": "projectId",
+							"value": "5",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{server}}/cxrestapi/osa/scans/",
+					"protocol": "http",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"cxrestapi",
+						"osa",
+						"scans",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
