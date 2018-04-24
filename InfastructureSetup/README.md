@@ -1,4 +1,4 @@
-# A collection of scripts to automate setup and maintenance of Checkmarx installations
+# Scripts to automate setup and maintenance of Checkmarx installations
 
 ## Remove Cx load delay after IIS is restarted - `cx-init-webapps-on-iis-restart.ps1`
 Cx may take up to several minutes to load the first time it is accessed after an IIS restart or a box reboot. You can mitigate it by configuring IIS built-in feature called "application initialization".
