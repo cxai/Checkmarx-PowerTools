@@ -28,7 +28,6 @@ parser = argparse.ArgumentParser(description=__doc__,formatter_class=argparse.Ra
 parser.add_argument('-s','--server', help='Server host name or IP', required=True)
 parser.add_argument('-u','--user', help='API user', required=True)
 parser.add_argument('-p','--password', help='API password', required=True)
-parser.add_argument('-f','--file', help='OSA File archive', required=False)
 args = parser.parse_args()
 try:
     api=CxREST.API()
