@@ -3,10 +3,12 @@ Python abstraction for Checkmarx REST API's
 
 Tested on 8.7 API
 '''
+from __future__ import print_function
+
 __author__ = 'Alex Ivkin'
 __version__ = "1.0"
 
-import time, json, requests
+import sys, time, json, requests
 
 class API:
     #def __init__(self):
@@ -26,11 +28,11 @@ class API:
 
     def projects(self):
         url = '/CxRestAPI/projects'
-        results = json.loads(requests.get(self.server+url, data='', headers=self.rest_headers).text)
-        #response = requests.get(self.server+url, data='', headers=self.rest_headers)
-        #if response.status_code != 200:
-        #    raise Exception("Error listing projects: %s"%response.text)
-        #results = json.loads(response.text)
+        #results = json.loads(requests.get(self.server+url, data='', headers=self.rest_headers).text)
+        response = requests.get(self.server+url, data='', headers=self.rest_headers)
+        if response.status_code != 200:
+            raise Exception("Error listing projects, error %s" % str(response.status_code)) # response.text
+        results = json.loads(response.text)
         # self.print(json.dumps(projects, indent=4, sort_keys=True))
         # a more consumable name:id dict,with a side effect of conflating identically named projects
         return dict(zip([p["name"] for p in results],[p["id"] for p in results]))
@@ -38,11 +40,6 @@ class API:
     def teams(self):
         url = '/CxRestAPI/auth/teams'
         results = json.loads(requests.get(self.server+url, data='', headers=self.rest_headers).text)
-        #response = requests.get(self.server+url, data='', headers=self.rest_headers)
-        #if response.status_code != 200:
-        #    raise Exception("Error listing teams: %s"%response.text)
-        #print(json.dumps(response.text, indent=4, sort_keys=True))
-        #results = json.loads(response.text)
         # a more consumable name:id dict,with a side effect of conflating identically named projects
         return dict(zip([p["fullName"] for p in results],[p["id"] for p in results]))
 
@@ -112,7 +109,8 @@ class API:
             if response.status_code != 200:
                 raise Exception("Error checking "+str(scanid))
             status = json.loads(response.text)["state" if isOSA else "status"]
-            print("Waiting for the %s scan %s to complete: %s(%d) - %d sec.                     \r" % ("OST" if isOSA else "SAST",str(scanid),status["name"],status["id"],timespent),end='',flush=False)
+            print("Waiting for the %s scan %s to complete: %s(%d) - %d sec.                     \r" % ("OST" if isOSA else "SAST",str(scanid),status["name"],status["id"],timespent),end='')# ,flush=False) flush is not backported to 2.7
+            sys.stdout.flush()
             if (status["id"] == 7 and not isOSA) or (status["id"] == 2 and isOSA):
                 print()
                 break

@@ -8,17 +8,28 @@ Does the following:
 2. Submits three scans for different branches in a github repo
 3. Submits an OSA scan
 
-Uses OAuth bearer token authentication.
+If you are getting an error 500 after logging in you might need to define IdentityAuthority in the DB:
+UPDATE [CxDB].[dbo].[CxComponentConfiguration] SET Value = 'http://localhost' WHERE [Key] = 'IdentityAuthority'
+and restart IIS
 
-Tested against 8.7 APIs
+Todo:
+ Pull a list of scans
+ Get results - Vulnerability details,count,date/time for the latest scan
+ Pull XML report
+
+Uses OAuth bearer token authentication. Requires requests python module
+
+Tested against 8.6 and 8.7 APIs
 """
+from __future__ import print_function
+
 __author__ = 'Alex Ivkin'
 __version__ = "1.0"
 
 import os, sys, traceback, argparse, logging, requests
 from CxREST import CxREST
 
-PROJECT="JavaApp"
+PROJECT="NetStore"
 TEAM="\\CxServer" #ideally we should get this from the user record, but as of 8.7 no such api exists
 PRESET="Checkmarx Default"
 ENGINECONFIG="Default Configuration"
