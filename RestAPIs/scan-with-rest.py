@@ -68,7 +68,7 @@ try:
     api.setSourceToGit(projectId,"https://github.com/cxai/NetStore","refs/tags/v3")
     api.waitToComplete(api.startSASTScan(projectId))
     # get and save the OSA file first
-    r = requests.get("https://github.com/cxai/NetStore/raw/master/javalibs.zip", stream=True)
+    r = requests.get("https://github.com/cxai/NetStore/raw/master/netlibs.zip", stream=True)
     with open("javalibs.zip", 'wb') as f:
         for c in r.iter_content(chunk_size=1024):
             if c:
