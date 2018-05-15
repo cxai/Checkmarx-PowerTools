@@ -1,0 +1,12 @@
+checkmarx_scan:
+  stage: test
+  image: openjdk:8-alpine
+  tags:
+    - docker
+  script:
+    - apk add --update curl bash sed
+    - cd ..
+    - curl -O -s -k https://raw.githubusercontent.com/cxai/Checkmarx-PowerTools/master/RestAPIs/scan-with-rest-curl.sh && chmod a+x scan-with-rest-curl.sh
+    - jar cf SpringApp.zip /builds/cxai/SpringApp
+    - ls -la /builds/cxai/
+    - /bin/bash -c "./scan-with-rest-curl.sh -s 009eb410.ngrok.io -u admin@cx -p admin -P JavaIJ -z SpringApp.zip"

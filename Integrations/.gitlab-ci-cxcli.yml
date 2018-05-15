@@ -1,0 +1,13 @@
+checkmarx_scan:
+  stage: test
+  image: openjdk:8-alpine
+  tags:
+    - docker
+  script:
+    - apk add --update curl
+    - curl -O -k http://download.checkmarx.com/8.6.0/Plugins/CxConsolePlugin-8.60.1.zip && jar -xf CxConsolePlugin-8.60.1.zip && rm CxConsolePlugin-8.60.1.zip && chmod a+x CxConsolePlugin-8.60.1
+    - cd CxConsolePlugin-8.60.1
+    - java -version
+    - whoami
+    - pwd
+    - java -Xmx1024m -jar CxConsolePlugin-CLI-8.60.1.jar scan -v -Projectname "CxServer\SP\Company\Users\SpringApp" -CxServer http://854ec881.ngrok.io/ -cxuser admin@cx -cxpassword admin -locationtype folder -locationpath "/builds/cxai/SpringApp" -preset "Checkmarx Default"
