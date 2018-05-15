@@ -6,7 +6,7 @@ Tested on 8.7 API
 from __future__ import print_function
 
 __author__ = 'Alex Ivkin'
-__version__ = "1.0"
+__version__ = "1.0.1"
 
 import sys, time, json, requests
 
@@ -111,7 +111,10 @@ class API:
             status = json.loads(response.text)["state" if isOSA else "status"]
             print("Waiting for the %s scan %s to complete: %s(%d) - %d sec.                     \r" % ("OST" if isOSA else "SAST",str(scanid),status["name"],status["id"],timespent),end='')# ,flush=False) flush is not backported to 2.7
             sys.stdout.flush()
-            if (status["id"] == 7 and not isOSA) or (status["id"] == 2 and isOSA):
+            if (status["id"] == 7 and not isOSA) or (status["id"] == 2 and isOSA): # success
+                print()
+                break
+            if (status["id"] == 8 and not isOSA) or (status["id"] == 3 and isOSA): # failed
                 print()
                 break
             time.sleep(sleepsec)
