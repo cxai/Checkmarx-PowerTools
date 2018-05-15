@@ -1,8 +1,8 @@
 #!/bin/bash
-#
 
 function show_help() {
     cat << EOF
+
  A Sample REST Application for submitting a SAST scan using pure curl commands.
  Uploads a zip file for scanning on an existing project and waits for the scan to complete.
  This script needs only curl, sed and awk for parsing.
@@ -12,6 +12,7 @@ function show_help() {
   -z/-zip - source code zip file
 
  2018 Alex Ivkin
+
 EOF
 }
 function jsonValue() {

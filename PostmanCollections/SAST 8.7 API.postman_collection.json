@@ -80,7 +80,7 @@
 			},
 			"response": [
 				{
-					"id": "f2ed6a5e-d3be-4fb4-acda-18cef36e9e64",
+					"id": "f9d10462-cd23-4444-938d-b6c13ccb6586",
 					"name": "GetToken",
 					"originalRequest": {
 						"method": "POST",
@@ -745,14 +745,13 @@
 					"raw": "{\n\t\"scanId\" : {{scanId}},\n\t\"reportType\": \"XML\"\n}"
 				},
 				"url": {
-					"raw": "http://{{server}}/cxrestapi//projects/",
+					"raw": "http://{{server}}/cxrestapi/projects/",
 					"protocol": "http",
 					"host": [
 						"{{server}}"
 					],
 					"path": [
 						"cxrestapi",
-						"",
 						"projects",
 						""
 					]
