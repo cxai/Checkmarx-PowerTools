@@ -9,6 +9,8 @@ Accessing CxSAST out of the box installation on the root url `/` shows the defau
 Note that it will pull in and install an optional IIS module called "url rewrite".
 
 ## Checkmarx Zip tool for Linux and Mac - `cxzip.sh`
-Zip up only files that Checkmarx can scan. This is a bash script that can be reduced to this one-liner: `zip -r zipname.zip foldername -i@<( sed 's/^/*/' CxExt.txt )`
+A bash script to zip up only the files that Checkmarx can scan. This script can be reduced to this one-liner:
 
-CxExt.txt is the file from Checkmarx [CxZip distribution](https://download.checkmarx.com/CXPS/CxServices/Cx7Zip.zip). `-i@` is for zip to use a file for file patterns, `<(...)` is a special bash construct to pipe output through a file handle, `sed` is to prefix everything with a * wildcard
+`zip -r zipname.zip foldername -i@<( sed 's/^/*/' CxExt.txt )`
+
+CxExt.txt is the file from the Checkmarx [CxZip distribution](https://download.checkmarx.com/CXPS/CxServices/Cx7Zip.zip). `-i@` is for zip to use a file for file patterns, `<(...)` is a special bash construct to pipe output through a file handle, `sed` is to prefix everything with a * wildcard
