@@ -109,7 +109,7 @@ class API:
             if response.status_code != 200:
                 raise Exception("Error checking "+str(scanid))
             status = json.loads(response.text)["state" if isOSA else "status"]
-            print("Waiting for the %s scan %s to complete: %s(%d) - %d sec.                     \r" % ("OST" if isOSA else "SAST",str(scanid),status["name"],status["id"],timespent),end='')# ,flush=False) flush is not backported to 2.7
+            print("Waiting for the %s scan %s to complete: %s(%d) - %d sec.                     \r" % ("OSA" if isOSA else "SAST",str(scanid),status["name"],status["id"],timespent),end='')# ,flush=False) flush is not backported to 2.7
             sys.stdout.flush()
             if (status["id"] == 7 and not isOSA) or (status["id"] == 2 and isOSA): # success
                 print()
