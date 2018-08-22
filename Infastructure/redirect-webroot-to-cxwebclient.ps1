@@ -1,5 +1,7 @@
 # https://docs.microsoft.com/en-us/iis/extensions/url-rewrite-module/url-rewrite-module-configuration-reference
 
+# Note that in some cases this script would cause an HTTPS traffic to be redirected over HTTP
+
 $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
 

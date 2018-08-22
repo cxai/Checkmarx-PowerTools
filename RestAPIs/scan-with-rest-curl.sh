@@ -39,8 +39,6 @@ while :; do
         password="$2"; shift ;;
     -P|-project)
         project="$2"; shift ;;
-    -P|-project)
-        project="$2"; shift ;;
     -z|-zip)
         zip="$2"; shift ;;
     *)               # Default case: No more options, so break out of the loop.
