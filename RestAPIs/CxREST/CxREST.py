@@ -48,6 +48,11 @@ class API:
         results = json.loads(requests.get(self.server+url, data='', headers=self.rest_headers).text)
         return dict(zip([p["name"] for p in results],[p["id"] for p in results]))
 
+    def scans(self,projectId):
+        url = '/CxRestAPI/sast/scans'
+        #results = json.loads(requests.get(self.server+url, data='', headers=self.rest_headers).text)
+        return requests.get(self.server+url, data=json.dumps({"projectId":projectId}), headers=self.rest_headers)
+
     def engineConfigs(self):
         url = '/CxRestAPI/sast/engineConfigurations'
         results = json.loads(requests.get(self.server+url, data='', headers=self.rest_headers).text)
