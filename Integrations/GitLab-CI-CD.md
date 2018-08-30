@@ -3,8 +3,8 @@
 * Configure a new runner by going to GitLab settings, under the 'runner' sectiion. Copy the GitLab CI/CD runner keys.
 * Install and register the [GitLab docker runner](https://docs.gitlab.com/runner/install/docker.html) on the server that will be executing the pipeline:
 
-    docker run --rm -it --name gitlab-runner -v gitlab-runner:/etc/gitlab-runner gitlab/gitlab-runner register \
-  	--non-interactive \
+      docker run --rm -it --name gitlab-runner -v gitlab-runner:/etc/gitlab-runner gitlab/gitlab-runner register \
+	--non-interactive \
   	--executor "docker" \
   	--docker-image openjdk:8-alpine \
   	--url "https://gitlab.com/" \
