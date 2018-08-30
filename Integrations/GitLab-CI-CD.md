@@ -1,7 +1,8 @@
 # How to configure Gitlab CI/CD with Checkmarx scanning
 
-* Configure a new runner by going to https://gitlab.com/'myname/myrepo'/settings/ci_cd, and using the 'runner' settings. Copy the GitLab CI/CD runner keys.
+* Configure a new runner by going to GitLab settings, under the 'runner' sectiion. Copy the GitLab CI/CD runner keys.
 * Install and register the [GitLab docker runner](https://docs.gitlab.com/runner/install/docker.html) on the server that will be executing the pipeline:
+
 `docker run --rm -it --name gitlab-runner -v gitlab-runner:/etc/gitlab-runner gitlab/gitlab-runner register \
   --non-interactive \
   --executor "docker" \
@@ -14,11 +15,15 @@
   --locked="false"`
 
 If you want to see all the options for the runner registration run
+
 `docker run --rm -it --name gitlab-runner -v gitlab-runner:/etc/gitlab-runner gitlab/gitlab-runner register -h`
-or look [here]((http://docs.gitlab.com/runner/register/#docker)
+
+or look [here](http://docs.gitlab.com/runner/register/#docker)
 
 * Start the runner
+
 `docker run -d --name gitlab-runner -v gitlab-runner:/etc/gitlab-runner -v /var/run/docker.sock:/var/run/docker.sock gitlab/gitlab-runner:latest`
+
 * Choose the way you want to do the scan - using the Checkmarx CLI `.gitlab-ci-cxcli.yml` or using REST/curl `.gitlab-ci-rest.yml`. Rename that file to `.gitlab-ci.yml`
 * Change the url in .gitlab-ci.yml to match that of your gitlab pipleline runner server. Set the proper username and a password.
 * Save `.gitlab-ci.yml` to the root of your repository and push the code. This will start the scan through the pipeline and to Checkmarx.
